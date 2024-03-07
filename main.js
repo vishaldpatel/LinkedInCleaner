@@ -4,9 +4,12 @@
 // @version      2024-03-06
 // @description  Only show actual posts on your feed and not likes / comments / reposts.
 // @author       You
+// @match        https://www.linkedin.com/
 // @match        https://www.linkedin.com/feed/
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @license      MIT
+// @downloadURL https://update.greasyfork.org/scripts/489189/LinkedIn%20Cleaner.user.js
+// @updateURL https://update.greasyfork.org/scripts/489189/LinkedIn%20Cleaner.meta.js
 // ==/UserScript==
 
 (function() {
