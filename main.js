@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         LinkedIn Cleaner
 // @namespace    http://tampermonkey.net/
-// @version      2024-03-06
+// @version      2024-03-10
 // @description  Only show actual posts on your feed and not likes / comments / reposts.
 // @author       You
 // @match        https://www.linkedin.com/
@@ -15,22 +15,31 @@
 (function() {
     'use strict';
     let observer = null;
-    function cleanup_feed_skips() {
-        let feed_skips = document.getElementsByClassName("feed-skip-link__container");
-        for (let i = 0; i < feed_skips.length; i++) {
-            feed_skips[0].remove();
+
+    function is_a_match(element_text) {
+        if (element_text.endsWith('celebrates this') ||
+            element_text.endsWith('finds this insightful') ||
+            element_text.endsWith('Suggested') ||
+            element_text.endsWith('loves this') ||
+            element_text.endsWith('supported this') ||
+            element_text.endsWith('reposted this') ||
+            element_text.endsWith('likes this')) {
+            return true;
+        } else {
+            return false;
         }
     }
 
-    function cleanup_likes_and_comments() {
-        let likes = document.getElementsByClassName("update-components-header");
-        for (let i = 0; i < likes.length; i++) {
-            likes[i].parentNode.remove()
+    function cleanup_feed_skips() {
+        let post_headers = document.getElementsByClassName("update-components-header__text-wrapper");
+        for (let i = 0; i < post_headers.length; i++) {
+            if (is_a_match(post_headers[i].innerText)) {
+                post_headers[i].parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
+            }
         }
     }
 
     function cleanup() {
-        cleanup_likes_and_comments();
         cleanup_feed_skips();
     }
 
