@@ -21,7 +21,7 @@
             element_text.endsWith('finds this insightful') ||
             element_text.endsWith('Suggested') ||
             element_text.endsWith('loves this') ||
-            element_text.endsWith('supported this') ||
+            element_text.endsWith('supports this') ||
             element_text.endsWith('reposted this') ||
             element_text.endsWith('likes this')) {
             return true;
